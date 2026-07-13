@@ -20,3 +20,6 @@ postgres-data/
 # OS
 .DS_Store
 Thumbs.db
+
+# Prettierrc
+.prettierrc
