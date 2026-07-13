@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# Odoo
+*.log
+*.pyc
+*.pyo
+
+# Docker
+postgres-data/
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
