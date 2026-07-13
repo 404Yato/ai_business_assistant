@@ -16,6 +16,8 @@ services:
       - db
     ports:
       - "8069:8069"
+    env_file:
+      - .env
     environment:
       HOST: db
       USER: odoo

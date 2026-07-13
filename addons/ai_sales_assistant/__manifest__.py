@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "AI Business Assistant.",
+    'name': "AI Business Assistant",
 
     'summary': "Integración de IA para asistir procesos comerciales en Odoo.",
 

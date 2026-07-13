@@ -1,1 +1,1 @@
-from . import ai_service
+from . import gemini_service

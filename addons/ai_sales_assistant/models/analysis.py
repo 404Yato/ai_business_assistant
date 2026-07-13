@@ -1,5 +1,15 @@
 from odoo import models, fields
 from odoo.exceptions import UserError
+from ..services.gemini_service import GeminiService
+
+priority_map = {
+    "alta": "high",
+    "media": "medium",
+    "baja": "low",
+    "high": "high",
+    "medium": "medium",
+    "low": "low",
+}
 
 class AIAnalysis(models.Model):
     _name = "ai.analysis"
@@ -50,23 +60,30 @@ class AIAnalysis(models.Model):
 
     def action_analyze_with_ai(self):
 
+        service = GeminiService()
+
         for record in self:
 
-            if not record.description:
-                raise UserError(
-                    "Debe ingresar una descripción antes de analizar."
-                )
+            result = service.analyze(
+                record.customer,
+                record.description
+            )
 
-            # Temporalmente simularemos la IA
-            result = {
-                "summary": "Análisis generado por IA",
-                "priority": "high",
-                "next_action": "Contactar al cliente"
-            }
+            priority = result.get("priority", "").lower()
+
+            priority = priority_map.get(
+                priority,
+                "medium"
+            )
 
             record.write({
-                "ai_summary": result["summary"],
-                "ai_priority": result["priority"],
-                "next_action": result["next_action"],
+
+                "ai_summary": result.get("summary"),
+
+                "ai_priority": priority,
+
+                "next_action": result.get("next_action"),
+
                 "state": "analyzed"
+
             })
