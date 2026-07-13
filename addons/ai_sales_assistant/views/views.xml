@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Vista de lista -->
+    <record id="view_ai_analysis_tree" model="ir.ui.view">
+        <field name="name">ai.analysis.tree</field>
+        <field name="model">ai.analysis</field>
+        <field name="arch" type="xml">
+            <list string="AI Analysis">
+                <field name="name"/>
+                <field name="customer"/>
+                <field name="ai_priority"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista formulario -->
+    <record id="view_ai_analysis_form" model="ir.ui.view">
+        <field name="name">ai.analysis.form</field>
+        <field name="model">ai.analysis</field>
+        <field name="arch" type="xml">
+            <form string="AI Analysis">
+                <header>
+                    <button
+                        name="action_analyze_with_ai"
+                        type="object"
+                        string="Analizar con IA"
+                        class="oe_highlight"/>
+                </header>
+                <sheet>
+
+                    <group>
+
+                        <field name="name"/>
+
+                        <field name="customer"/>
+
+                        <field name="description"/>
+
+                    </group>
+
+                    <group string="Resultado IA">
+
+                        <field name="ai_summary"/>
+
+                        <field name="ai_priority"/>
+                        
+                        <field name="next_action"/>
+                        
+                        <field name="state"/>
+
+                    </group>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+<!-- Acción -->
+
+<record id="action_ai_analysis" model="ir.actions.act_window">
+    <field name="name">AI Analysis</field>
+    <field name="res_model">ai.analysis</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+<!-- Menú principal -->
+
+<menuitem
+    id="menu_ai_root"
+    name="AI Business Assistant"
+    sequence="10"/>
+    <menuitem
+    id="menu_ai_analysis"
+    name="AI Analysis"
+    parent="menu_ai_root"
+    action="action_ai_analysis"
+    sequence="1"/>
+
+</odoo>
