@@ -1,1 +1,1 @@
-from . import gemini_service
+from . import gemini_worker
