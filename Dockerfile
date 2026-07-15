@@ -3,7 +3,7 @@ FROM odoo:18
 USER root
 
 RUN apt-get update && \
-    apt-get install -y python3-venv && \
+    apt-get install -y python3-venv postgresql-client && \
     rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /tmp/requirements.txt
