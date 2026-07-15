@@ -14,4 +14,12 @@ RUN /opt/gemini-env/bin/pip install --upgrade pip
 
 RUN /opt/gemini-env/bin/pip install --no-cache-dir -r /tmp/requirements.txt
 
+COPY addons /mnt/extra-addons
+
 USER odoo
+
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
