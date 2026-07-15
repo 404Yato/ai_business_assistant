@@ -4,9 +4,9 @@ services:
     container_name: odoo-db
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${PGDATABASE}
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
@@ -21,9 +21,9 @@ services:
     env_file:
       - .env
     environment:
-      HOST: ${DB_HOST}
-      USER: ${POSTGRES_USER}
-      PASSWORD: ${POSTGRES_PASSWORD}
+      HOST: ${PGHOST}
+      USER: ${PGUSER}
+      PASSWORD: ${PGPASSWORD}
       GEMINI_API_KEY: ${GEMINI_API_KEY}
     volumes:
       - ./addons:/mnt/extra-addons

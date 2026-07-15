@@ -12,7 +12,9 @@ db_user = ${PGUSER}
 db_password = ${PGPASSWORD}
 db_name = ${PGDATABASE}
 
-http_port = ${PORT}
+http_interface = 0.0.0.0
+http_port = 8069
+proxy_mode = True
 EOF
 
 
@@ -29,6 +31,9 @@ do
 done
 
 
+echo "PostgreSQL disponible."
+
+
 INITIALIZED=$(PGPASSWORD="$PGPASSWORD" psql \
     -h "$PGHOST" \
     -p "$PGPORT" \
@@ -39,8 +44,18 @@ INITIALIZED=$(PGPASSWORD="$PGPASSWORD" psql \
 
 if [ "$INITIALIZED" = "1" ]; then
     echo "Base de datos ya inicializada."
-    exec odoo
+
+    exec odoo \
+        --http-interface=0.0.0.0 \
+        --http-port=8069
+
 else
     echo "Inicializando Odoo..."
-    exec odoo -d "$PGDATABASE" -i base --without-demo=all
+
+    exec odoo \
+        --http-interface=0.0.0.0 \
+        --http-port=8069 \
+        -d "$PGDATABASE" \
+        -i base \
+        --without-demo=all
 fi
