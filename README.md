@@ -1,174 +1,351 @@
-# AI Business Assistant
+# CMTS AI Business Assistant 🤖
 
-AI Business Assistant es un módulo personalizado para **Odoo 18** que integra **Google Gemini** para analizar oportunidades de negocio y generar recomendaciones comerciales mediante Inteligencia Artificial.
+Sistema de análisis empresarial asistido por inteligencia artificial desarrollado sobre **Odoo 18**, integrando un módulo personalizado capaz de analizar solicitudes de clientes mediante **Google Gemini AI** y generar recomendaciones automáticas de prioridad, resumen y próximas acciones.
 
-Este proyecto fue desarrollado como demostración técnica para mostrar conocimientos en desarrollo sobre Odoo, integración con APIs de IA y arquitectura modular en Python.
+El objetivo del proyecto es demostrar la integración entre un ERP empresarial, desarrollo de módulos personalizados, inteligencia artificial generativa y despliegue cloud.
 
----
-
-## Características
-
-- Desarrollo de un módulo personalizado para Odoo 18.
-- Modelo de negocio personalizado (`ai.analysis`).
-- Vistas de lista y formulario.
-- Acción personalizada mediante botón.
-- Integración con Google Gemini API.
-- Análisis automático de oportunidades comerciales.
-- Generación de:
-  - Resumen ejecutivo.
-  - Nivel de prioridad.
-  - Próxima acción recomendada.
-- Arquitectura desacoplada mediante una capa de servicios.
-- Variables de entorno para proteger credenciales.
+La arquitectura fue diseñada para ser extensible, permitiendo incorporar diferentes proveedores de inteligencia artificial mediante servicios adicionales sin modificar la lógica principal del sistema.
 
 ---
 
-## Tecnologías
+# 🚀 Demo
+
+Aplicación desplegada:
+
+🔗 **Demo:** https://cmts-ai-business-assistant.up.railway.app/
+
+## Usuario Demo
+
+Para explorar la aplicación:
+
+```
+Usuario:
+demo
+
+Contraseña:
+demo123
+```
+
+> El usuario demo está creado únicamente para pruebas y visualización de funcionalidades.
+
+---
+
+# 📸 Capturas de la aplicación
+
+## Pantalla principal
+
+```
+<img width="1861" height="510" alt="image" src="https://github.com/user-attachments/assets/b67481a2-71b5-476b-9cbe-e3500a9b901e" />
+```
+
+---
+
+## Creación de análisis empresarial
+
+La aplicación permite registrar nuevos casos ingresando:
+
+- Título del análisis.
+- Cliente asociado.
+- Descripción del problema o necesidad.
+
+Ejemplo:
+
+> Cliente necesita reemplazar su sistema actual de inventario porque presenta errores frecuentes.
+
+```
+<img width="1863" height="326" alt="image" src="https://github.com/user-attachments/assets/53d151f0-ddd4-44c3-b654-da117c2855bd" />
+```
+
+---
+
+## Resultado generado por Inteligencia Artificial
+
+Luego del análisis, Gemini genera automáticamente:
+
+- Resumen del caso.
+- Nivel de prioridad.
+- Próxima acción recomendada.
+
+```
+<img width="1867" height="578" alt="image" src="https://github.com/user-attachments/assets/a580ae8c-4ad1-4fda-872c-f12a6066c48c" />
+```
+
+---
+
+# 🧠 Funcionamiento
+
+El flujo general de la aplicación es:
+
+```
+Usuario
+   |
+   v
+Formulario Odoo
+   |
+   v
+Módulo personalizado AI Analysis
+   |
+   v
+Capa de servicios de Inteligencia Artificial
+   |
+   v
+Proveedor IA configurado
+(Gemini, OpenAI, Claude, modelos propios, etc.)
+   |
+   v
+Respuesta estructurada JSON
+   |
+   v
+Actualización automática del registro
+```
+
+La aplicación separa la lógica del negocio de la integración con inteligencia artificial.
+
+Esto permite cambiar o agregar proveedores de IA sin modificar los modelos, vistas o procesos internos del módulo Odoo.
+
+---
+
+# 🏗️ Arquitectura
+
+## Tecnologías utilizadas
+
+### ERP / Backend
 
 - Odoo 18
-- Python 3
-- PostgreSQL
-- Docker & Docker Compose
-- Google Gemini API
-- XML (vistas Odoo)
+- Python
+- ORM de Odoo
+- Módulos personalizados
+
+### Inteligencia Artificial
+
+- Google Gemini API.
+- Google GenAI SDK.
+- Procesamiento de lenguaje natural.
+- Arquitectura extensible para múltiples proveedores IA.
+
+### Base de datos
+
+- PostgreSQL 17
+
+### Infraestructura
+
+- Docker
+- Railway
+- PostgreSQL administrado
+- Variables de entorno
 
 ---
 
-## Arquitectura
+# 🤖 Arquitectura extensible de Inteligencia Artificial
 
-```text
-Usuario
-      │
-      ▼
-Formulario Odoo
-      │
-      ▼
-Botón "Analizar con IA"
-      │
-      ▼
-AIAnalysis (Modelo Odoo)
-      │
-      ▼
-GeminiService
-      │
-      ▼
-Google Gemini API
-      │
-      ▼
-Respuesta JSON
-      │
-      ▼
-Persistencia mediante ORM de Odoo
-      │
-      ▼
-Visualización del resultado
+La integración fue diseñada utilizando una capa de servicios independiente.
+
+Actualmente el sistema utiliza **Google Gemini AI**, pero la arquitectura permite incorporar nuevos modelos de inteligencia artificial mediante servicios adicionales.
+
+Por ejemplo, podría integrarse:
+
+- Google Gemini.
+- OpenAI GPT.
+- Anthropic Claude.
+- Modelos locales mediante API propia.
+- Cualquier proveedor compatible con respuestas estructuradas.
+
+Para agregar una nueva inteligencia artificial solamente sería necesario crear un nuevo servicio encargado de comunicarse con dicho proveedor manteniendo la misma estructura esperada.
+
+Esto permite mantener independiente:
+
+- La lógica empresarial.
+- Los modelos de datos de Odoo.
+- Las vistas del módulo.
+- Los procesos internos.
+
+De esta forma, el sistema no queda acoplado a un único proveedor de IA y puede evolucionar fácilmente según las necesidades del negocio.
+
+---
+
+# 📂 Estructura del proyecto
+
+```
+.
+├── addons/
+│   └── ai_analysis/
+│       ├── models/
+│       │   └── analysis.py
+│       ├── services/
+│       │   └── gemini_worker.py
+│       ├── views/
+│       └── __manifest__.py
+│
+├── Dockerfile
+├── docker-compose.yml
+├── entrypoint.sh
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-## Capturas
+# 🔎 Módulo AI Analysis
 
-### Formulario
+El módulo agrega un nuevo modelo dentro de Odoo:
 
-> *(Agregar captura aquí)*
+```
+ai.analysis
+```
 
-### Resultado del análisis
+Este modelo permite almacenar análisis empresariales generados por usuarios y enriquecidos mediante inteligencia artificial.
 
-> *(Agregar captura aquí)*
+## Campos principales
+
+| Campo | Descripción |
+|---|---|
+| Nombre | Título del análisis |
+| Cliente | Cliente asociado al caso |
+| Descripción | Contexto del problema |
+| Resumen IA | Resumen generado por inteligencia artificial |
+| Prioridad IA | Nivel de prioridad detectado |
+| Próxima acción | Recomendación generada |
+| Estado | Estado actual del análisis |
 
 ---
 
-## Instalación
+# 🤖 Integración con Gemini
 
-### Clonar repositorio
+El módulo utiliza una capa de servicios para comunicarse con modelos de inteligencia artificial.
 
-```bash
-git clone https://github.com/404Yato/ai_business_assistant.git
-cd ai_business_assistant
+Actualmente la implementación utiliza **Google Gemini API**.
+
+El módulo envía la información del caso:
+
+```json
+{
+  "customer": "Cliente ejemplo",
+  "description": "Descripción del problema"
+}
 ```
 
-### Levantar Docker
+Gemini procesa la información y responde con una estructura definida:
 
-```bash
-docker compose up -d
+```json
+{
+  "summary": "Resumen generado por IA",
+  "priority": "high",
+  "next_action": "Contactar cliente y evaluar solución"
+}
 ```
 
-### Configurar la API Key
+La respuesta es procesada automáticamente y almacenada dentro del registro de Odoo.
 
-Crear un archivo `.env`:
+---
+
+# 🐳 Ejecución local
+
+## Requisitos
+
+- Docker
+- Docker Compose
+- API Key de Gemini
+
+---
+
+## Variables de entorno
+
+Crear archivo:
+
+```
+.env
+```
+
+Ejemplo:
 
 ```env
+PGHOST=localhost
+PGPORT=5432
+PGUSER=odoo
+PGPASSWORD=password
+PGDATABASE=odoo
+
 GEMINI_API_KEY=tu_api_key
 ```
 
-### Instalar el módulo
-
-1. Activar modo desarrollador.
-2. Ir a **Apps**.
-3. Actualizar lista de aplicaciones.
-4. Instalar **AI Business Assistant**.
-
 ---
 
-## Ejemplo de uso
+## Levantar aplicación
 
-Crear un nuevo análisis indicando:
+Ejecutar:
 
-- Cliente
-- Descripción de la oportunidad
+```bash
+docker compose up --build
+```
 
-Luego presionar:
+La aplicación estará disponible en:
 
-**Analizar con IA**
-
-La IA generará automáticamente:
-
-- Resumen ejecutivo
-- Prioridad
-- Próxima acción sugerida
-
----
-
-## Estructura del proyecto
-
-```text
-ai_sales_assistant/
-
-├── models/
-│   └── analysis.py
-│
-├── services/
-│   └── gemini_service.py
-│
-├── views/
-│   └── views.xml
-│
-├── __manifest__.py
-└── __init__.py
+```
+http://localhost:8069
 ```
 
 ---
 
-## Posibles mejoras
+# ☁️ Deploy
 
-Este proyecto representa un MVP funcional. Algunas mejoras futuras podrían ser:
+La aplicación está preparada para despliegue mediante contenedores Docker.
 
-- [ ] Integración con el módulo CRM de Odoo.
-- [ ] Soporte para múltiples proveedores de IA (OpenAI, Claude, Gemini).
-- [ ] Configuración de API Keys desde Odoo.
-- [ ] Historial de análisis realizados.
-- [ ] Sistema de puntuación comercial.
-- [ ] Registro de logs y monitoreo.
-- [ ] Pruebas unitarias.
+Configuración utilizada:
+
+- Contenedor Odoo personalizado.
+- PostgreSQL externo administrado.
+- Variables de entorno para credenciales.
+- Script de inicialización automático.
+- Integración con servicios cloud.
+
+Actualmente desplegada utilizando:
+
+- Railway como plataforma de hosting.
+- Railway PostgreSQL como base de datos.
 
 ---
 
-## Objetivo del proyecto
+# 🔐 Seguridad
 
-Este proyecto fue desarrollado como parte de mi portfolio para demostrar experiencia en:
+Buenas prácticas aplicadas:
 
-- Desarrollo de módulos personalizados para Odoo.
-- Integración con APIs externas.
-- Arquitectura basada en servicios.
-- Consumo de modelos de IA generativa.
-- Desarrollo backend con Python.
+- Credenciales almacenadas mediante variables de entorno.
+- API Key de Gemini protegida.
+- Separación entre aplicación y base de datos.
+- Separación de usuarios y permisos.
+- Configuración preparada para ambientes productivos.
+
+---
+
+# 📚 Aprendizajes del proyecto
+
+Durante el desarrollo se trabajaron conceptos como:
+
+- Creación de módulos personalizados en Odoo.
+- Desarrollo utilizando ORM de Odoo.
+- Integración con APIs de inteligencia artificial.
+- Diseño de servicios desacoplados.
+- Arquitectura preparada para múltiples proveedores IA.
+- Dockerización de aplicaciones empresariales.
+- Configuración de PostgreSQL en entornos cloud.
+- Deploy utilizando infraestructura administrada.
+- Manejo de variables de entorno.
+- Automatización del primer arranque de la aplicación.
+
+---
+
+# 👨‍💻 Autor
+
+## Cristian Tapia Suárez
+
+Desarrollador Full Stack enfocado en:
+
+- Python
+- Django
+- SQL
+- Desarrollo Backend
+- Integración de Inteligencia Artificial
+
+---
+
+⭐ Proyecto desarrollado como demostración de integración entre ERP, inteligencia artificial y despliegue cloud.
