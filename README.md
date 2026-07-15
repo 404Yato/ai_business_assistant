@@ -34,9 +34,7 @@ demo123
 
 ## Pantalla principal
 
-```
 <img width="1861" height="510" alt="image" src="https://github.com/user-attachments/assets/b67481a2-71b5-476b-9cbe-e3500a9b901e" />
-```
 
 ---
 
@@ -52,9 +50,7 @@ Ejemplo:
 
 > Cliente necesita reemplazar su sistema actual de inventario porque presenta errores frecuentes.
 
-```
 <img width="1863" height="326" alt="image" src="https://github.com/user-attachments/assets/53d151f0-ddd4-44c3-b654-da117c2855bd" />
-```
 
 ---
 
@@ -66,9 +62,7 @@ Luego del análisis, Gemini genera automáticamente:
 - Nivel de prioridad.
 - Próxima acción recomendada.
 
-```
 <img width="1867" height="578" alt="image" src="https://github.com/user-attachments/assets/a580ae8c-4ad1-4fda-872c-f12a6066c48c" />
-```
 
 ---
 
