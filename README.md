@@ -1,6 +1,6 @@
-## License
+## 📄 Licencia
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Este proyecto se distribuye bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más información.
 
 # CMTS AI Business Assistant 🤖
 
