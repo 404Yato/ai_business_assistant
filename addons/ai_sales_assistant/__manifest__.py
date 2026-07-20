@@ -17,6 +17,7 @@ generar resúmenes y asistir en la toma de decisiones.
     # for the full list
     'category': 'Productivity',
     'version': '1.0.0',
+    'license': 'MIT',
 
     # any module necessary for this one to work correctly
     'depends': ['base'],
@@ -35,5 +36,6 @@ generar resúmenes y asistir en la toma de decisiones.
     'installable': True,
 
     'application': True,
+    
 }
 

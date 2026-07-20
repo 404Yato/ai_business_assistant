@@ -1,3 +1,7 @@
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
 # AI Business Assistant
 
 AI Business Assistant es un módulo personalizado para **Odoo 18** que integra **Google Gemini** para analizar oportunidades de negocio y generar recomendaciones comerciales mediante Inteligencia Artificial.

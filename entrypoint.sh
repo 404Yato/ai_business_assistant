@@ -1,6 +1,10 @@
 #!/bin/sh
 set -e
 
+mkdir -p /var/lib/odoo
+chown -R odoo:odoo /var/lib/odoo
+chmod -R 755 /var/lib/odoo
+
 cat >/etc/odoo/odoo.conf <<EOF
 [options]
 addons_path = /usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons
