@@ -57,4 +57,6 @@ else
         -d "$PGDATABASE" \
         -i base \
         --without-demo=all
+
+    echo "Iniciando Odoo en el puerto ${PORT:-8069}"
 fi
