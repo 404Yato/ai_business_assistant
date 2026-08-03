@@ -13,7 +13,7 @@ db_password = ${PGPASSWORD}
 db_name = ${PGDATABASE}
 
 http_interface = 0.0.0.0
-http_port = 8069
+http_port = ${PORT:-8069}
 proxy_mode = True
 EOF
 
@@ -46,14 +46,14 @@ if [ "$INITIALIZED" = "1" ]; then
 
     exec odoo \
         --http-interface=0.0.0.0 \
-        --http-port=8069
+        --http-port=${PORT:-8069}
 
 else
     echo "Inicializando Odoo..."
 
     exec odoo \
         --http-interface=0.0.0.0 \
-        --http-port=8069 \
+        --http-port=${PORT:-8069} \
         -d "$PGDATABASE" \
         -i base \
         --without-demo=all
