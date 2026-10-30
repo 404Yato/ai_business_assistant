@@ -26,7 +26,8 @@
                         name="action_analyze_with_ai"
                         type="object"
                         string="Analizar con IA"
-                        class="oe_highlight"/>
+                        class="oe_highlight"
+                        groups="ai_analysis.group_ai_business_assistant_user"/>
                 </header>
                 <sheet>
 
@@ -71,12 +72,14 @@
 <menuitem
     id="menu_ai_root"
     name="AI Business Assistant"
-    sequence="10"/>
+    sequence="10"
+    groups="ai_analysis.group_ai_business_assistant_user"/>
     <menuitem
     id="menu_ai_analysis"
     name="AI Analysis"
     parent="menu_ai_root"
     action="action_ai_analysis"
-    sequence="1"/>
+    sequence="1"
+    groups="ai_analysis.group_ai_business_assistant_user"/>
 
 </odoo>

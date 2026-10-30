@@ -166,13 +166,22 @@ De esta forma, el sistema no queda acoplado a un único proveedor de IA y puede 
 ```
 .
 ├── addons/
-│   └── ai_analysis/
+│   └── ai_sales_assistant/
+│       ├── __init__.py
+│       ├── __manifest__.py
+│       ├── controllers/
+│       ├── demo/
 │       ├── models/
+│       │   ├── __init__.py
 │       │   └── analysis.py
+│       ├── security/
+│       │   ├── groups.xml
+│       │   └── ir.model.access.csv
 │       ├── services/
 │       │   └── gemini_worker.py
-│       ├── views/
-│       └── __manifest__.py
+│       └── views/
+│           ├── views.xml
+│           └── templates.xml
 │
 ├── Dockerfile
 ├── docker-compose.yml
@@ -305,13 +314,17 @@ Actualmente desplegada utilizando:
 
 # 🔐 Seguridad
 
-Buenas prácticas aplicadas:
+El módulo incorpora controles de acceso mediante el sistema de grupos y permisos de Odoo.
 
-- Credenciales almacenadas mediante variables de entorno.
-- API Key de Gemini protegida.
-- Separación entre aplicación y base de datos.
-- Separación de usuarios y permisos.
-- Configuración preparada para ambientes productivos.
+- Grupo específico para usuarios autorizados a utilizar AI Business Assistant.
+- Permisos de lectura, escritura y creación asignados mediante ACL.
+- Eliminación de registros deshabilitada para los usuarios del grupo.
+- Credenciales de Gemini administradas mediante variables de entorno.
+- Manejo controlado de errores durante la ejecución del worker.
+- Validación de la estructura de las respuestas recibidas desde Gemini.
+
+La configuración debe complementarse con pruebas de permisos y revisión de las credenciales antes de utilizar el módulo en un entorno productivo.
+
 
 ---
 

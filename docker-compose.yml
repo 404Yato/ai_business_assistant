@@ -7,6 +7,8 @@ services:
       POSTGRES_DB: ${PGDATABASE}
       POSTGRES_USER: ${PGUSER}
       POSTGRES_PASSWORD: ${PGPASSWORD}
+    ports:
+      - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
@@ -24,6 +26,7 @@ services:
       HOST: ${PGHOST}
       USER: ${PGUSER}
       PASSWORD: ${PGPASSWORD}
+      PORT: ${PGPORT}
       GEMINI_API_KEY: ${GEMINI_API_KEY}
     volumes:
       - ./addons:/mnt/extra-addons

@@ -16,7 +16,7 @@ generar resúmenes y asistir en la toma de decisiones.
     # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Productivity',
-    'version': '1.0.0',
+    'version': '1.1.0',
     'license': 'MIT',
 
     # any module necessary for this one to work correctly
@@ -24,6 +24,7 @@ generar resúmenes y asistir en la toma de decisiones.
 
     # always loaded
     'data': [
+        'security/groups.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
