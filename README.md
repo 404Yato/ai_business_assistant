@@ -16,7 +16,7 @@ La arquitectura fue diseñada para ser extensible, permitiendo incorporar difere
 
 Aplicación desplegada:
 
-🔗 **Demo:** https://cmts-ai-business-assistant.up.railway.app/
+🔗 **Demo:** https://ai-business.duckdns.org/
 
 ## Usuario Demo
 
